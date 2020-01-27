@@ -1,5 +1,6 @@
 mod list;
 mod stack;
+mod queue;
 
 #[cfg(test)]
 mod tests {
