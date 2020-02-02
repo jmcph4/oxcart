@@ -19,3 +19,7 @@ harness = false
 name = "vector_insert_front"
 harness = false
 
+[[bench]]
+name = "bubblesort_worst_case"
+harness = false
+
