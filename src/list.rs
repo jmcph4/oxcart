@@ -1,14 +1,18 @@
 use std::ops::{Index, IndexMut};
+use std::fmt::{Debug, Display};
+use std::hash::Hash;
 
-#[derive(Clone, Copy, PartialEq, Debug)]
+#[derive(Copy, Clone, PartialEq, Hash, Debug)]
 #[allow(dead_code)]
 pub enum ListError {
     OutOfBounds,
     Impossible,
 }
 
-pub trait List<T: Sized + Eq + Clone>: IntoIterator + Eq + Clone +
-    Index<usize> + IndexMut<usize>  {
+impl Eq for ListError {}
+
+pub trait List<T: Sized + Clone + Eq + Display + Debug>: Clone + Eq + Debug +
+    Display + IntoIterator + Index<usize> + IndexMut<usize>  {
     fn new() -> Self;
     fn get(&self, pos: usize) -> Result<&T, ListError>;
     fn get_mut(&mut self, pos: usize) -> Result<&mut T, ListError>;

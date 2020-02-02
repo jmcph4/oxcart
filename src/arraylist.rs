@@ -1,4 +1,6 @@
 use std::ops::{Index, IndexMut};
+use std::fmt;
+use std::fmt::{Debug, Display};
 use crate::list::{List, ListError};
 
 #[derive(Clone, Debug)]
@@ -47,7 +49,21 @@ impl<T> IndexMut<usize> for ArrayList<T>  {
     }
 }
 
-impl<T> List<T> for ArrayList<T> where T: Eq + Clone {
+impl<T> Display for ArrayList<T> where T: Display {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[")?;
+
+        for elem in self.elems.iter() {
+            write!(f, "{}, ", elem)?;
+        }
+
+        write!(f, "]")?;
+
+        Ok(())
+    }
+}
+
+impl<T> List<T> for ArrayList<T> where T: Sized + Clone + Eq + Display + Debug {
     fn new() -> Self {
         ArrayList {
             elems: Vec::new()
