@@ -7,4 +7,5 @@ pub mod priority_queue;
 pub mod bubblesort;
 
 pub mod arraylist;
+pub mod heap;
 
